@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     post '/users/signup' => 'registrations#create', as: :user_registration
   end
 
+  resources :channels, only: [:index, :show] do
+    resources :messages, only: [:create]
+  end
+
   get '/panel(/*path)', to: 'application#panel', as: :panel
   get '/(*path)', to: 'application#website', as: :website
 end

@@ -5,9 +5,9 @@ x-app: &default-app
     args:
       - "RAILS_ENV=production"
       - "RUBY_VERSION=3.2.1"
-      - "NODE_VERSION=16.17.1-r0"
+      - "NODE_VERSION=18.14.2-r0"
       - "YARN_VERSION=1.22.19-r0"
-      - "BUNDLER_VERSION=2.4.6"
+      - "BUNDLER_VERSION=2.4.10"
   env_file:
     - ".env"
   restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
@@ -88,6 +88,8 @@ services:
     ports:
       - "${DOCKER_CABLE_PORT_FORWARD:-127.0.0.1:28080}:28080"
     profiles: ["cable"]
+    volumes:
+      - ./:/app
 
 volumes:
   postgres: {}
